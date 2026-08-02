@@ -36,12 +36,6 @@
       --vively-pink: #f472b6;
       --vively-yellow-light: #fef9c3;
       --vively-yellow: #fde047;
-
-      /* KPI Specific Colors */
-      --kpi-green: #16a34a;
-      --kpi-yellow: #ca8a04;
-      --kpi-purple: #a855f7;
-      --kpi-red: #ef4444;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -217,7 +211,12 @@
       border-left: 4px solid var(--brand-accent);
     }
 
-    /* Grid Layout for KPI Cards */
+    /* Grid Layouts */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
     .grid-6 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -251,15 +250,17 @@
       flex-wrap: wrap;
       font-weight: 700;
     }
-    .kpi-value { font-size: 36px; line-height: 1.1; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 8px; font-variant-numeric: tabular-nums; color: #000; }
+    /* REVISED: Value text is strictly Black for ALL KPI cards */
+    .kpi-value { 
+      font-size: 36px; 
+      line-height: 1.1; 
+      font-weight: 900; 
+      letter-spacing: -0.03em; 
+      margin-bottom: 8px; 
+      font-variant-numeric: tabular-nums; 
+      color: #000000 !important; 
+    }
     .kpi-note { font-size: 13px; color: var(--muted); }
-    
-    /* Specific Colored Text for KPI Values */
-    .kpi-value.green { color: var(--kpi-green); }
-    .kpi-value.yellow { color: var(--kpi-yellow); }
-    .kpi-value.purple { color: var(--kpi-purple); }
-    .kpi-value.red { color: var(--kpi-red); }
-    .kpi-value.black { color: #000000; }
 
     .tag {
       display: inline-block;
@@ -356,21 +357,21 @@
     .footer { font-size: 12.5px; color: var(--muted); padding-top: 24px; border-top: 1px solid var(--line); margin-top: 40px; }
 
     @media (max-width: 1024px) {
-      .grid-6 { grid-template-columns: repeat(2, 1fr); }
+      .grid-6, .grid-4 { grid-template-columns: repeat(2, 1fr); }
       .timeline-details { grid-template-columns: 1fr; }
-      .title { font-size: 32px; }
+      .title { font-size: 36px; }
       .report { padding: 20px 16px 50px; }
       .month-item { font-size: 15px; }
     }
     @media (max-width: 640px) {
-      .grid-6 { grid-template-columns: 1fr; }
+      .grid-6, .grid-4 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
   <div class="report">
-    <!-- TOP BAR (REVISED: Vively Logo) -->
+    <!-- TOP BAR -->
     <div class="top-bar">
       <div class="brand-logo">Vively</div>
       <div class="live-status">
@@ -378,7 +379,7 @@
       </div>
     </div>
 
-    <!-- HERO (REVISED: Eyebrow Subtitle) -->
+    <!-- HERO -->
     <section class="hero">
       <div class="eyebrow">인플루언서 시딩 마켓팅 캠페인 리포트</div>
       <h1 class="title">자임당한의원</h1>
@@ -445,53 +446,82 @@
       </div>
     </section>
 
-    <!-- 02 KEY RESULTS (REVISED: Colored Numbers) -->
+    <!-- NEW SECTION: 01 — SUMMARY (ADDED ABOVE KEY RESULTS) -->
     <section class="section">
-      <h2><span class="num">02 — KEY RESULTS</span>핵심 성과 요약 (KPI)</h2>
+      <h2><span class="num">01 — SUMMARY</span>핵심 성과 요약</h2>
+      
+      <div class="grid-4" style="margin-top: 20px;">
+        <!-- Uploaded Videos (From Sheet) -->
+        <div class="card kpi hot">
+          <div class="kpi-label">업로드 영상</div>
+          <div class="kpi-value" id="summary-uploaded">0</div>
+          <div class="kpi-note">누적 업로드 완료 영상</div>
+        </div>
+
+        <!-- Total Viewers (Blank Placeholder) -->
+        <div class="card kpi hot">
+          <div class="kpi-label">총 조회수</div>
+          <div class="kpi-value" id="summary-views">-</div>
+          <div class="kpi-note">영상 합산 · 반올림 수치</div>
+        </div>
+
+        <!-- Total Comments (Blank Placeholder) -->
+        <div class="card kpi hot">
+          <div class="kpi-label">총 댓글</div>
+          <div class="kpi-value" id="summary-comments">-</div>
+          <div class="kpi-note">누적 기준</div>
+        </div>
+
+        <!-- Total Shares (Blank Placeholder) -->
+        <div class="card kpi hot">
+          <div class="kpi-label">총 공유</div>
+          <div class="kpi-value" id="summary-shares">-</div>
+          <div class="kpi-note">누적 기준</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 KEY RESULTS (All Numbers Black) -->
+    <section class="section">
+      <h2><span class="num">02 — KEY RESULTS</span>신청 및 시딩 진행 현황</h2>
       <div class="section-intro">
         신청자 등록 및 진행 상태 변경 시 실시간으로 수치가 자동 반영되는 라이브 대시보드입니다.
       </div>
       
       <div class="grid-6">
-        <!-- Total Creators (Black) -->
         <div class="card kpi hot">
           <div class="kpi-label">참여 크리에이터 <span class="tag">TOTAL</span></div>
-          <div class="kpi-value black" id="kpi-total">0명</div>
+          <div class="kpi-value" id="kpi-total">0명</div>
           <div class="kpi-note" id="kpi-total-note">전체 지원 크리에이터 수</div>
         </div>
 
-        <!-- Uploaded (Green) -->
         <div class="card kpi hot">
           <div class="kpi-label">콘텐츠 업로드 완료 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value green" id="kpi-uploaded">0명</div>
+          <div class="kpi-value" id="kpi-uploaded">0명</div>
           <div class="kpi-note">최종 콘텐츠 제작 완료</div>
         </div>
 
-        <!-- Waiting Upload (Yellow) -->
         <div class="card kpi hot">
           <div class="kpi-label">업로드 대기 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value yellow" id="kpi-waiting-upload">0명</div>
+          <div class="kpi-value" id="kpi-waiting-upload">0명</div>
           <div class="kpi-note">콘텐츠 업로드 진행 예정</div>
         </div>
 
-        <!-- Brand Accepted (Light Purple) -->
         <div class="card kpi hot">
           <div class="kpi-label">브랜드 승인 완료 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value purple" id="kpi-accepted">0명</div>
+          <div class="kpi-value" id="kpi-accepted">0명</div>
           <div class="kpi-note">브랜드 검수 및 승인 완료</div>
         </div>
 
-        <!-- Brand Rejected (Red) -->
         <div class="card kpi hot">
           <div class="kpi-label">브랜드 거절 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value red" id="kpi-rejected">0명</div>
+          <div class="kpi-value" id="kpi-rejected">0명</div>
           <div class="kpi-note">매칭 미보류 크리에이터</div>
         </div>
 
-        <!-- Waiting Approval (Black) -->
         <div class="card kpi hot">
           <div class="kpi-label">신청 대기 (승인 대기) <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value black" id="kpi-pending">0명</div>
+          <div class="kpi-value" id="kpi-pending">0명</div>
           <div class="kpi-note">신청 접수 후 승인 대기 중</div>
         </div>
       </div>
@@ -634,7 +664,7 @@
       renderNationalityChart({ "Indonesia": 12, "Egypt": 5, "Philippines": 4, "Spain": 3, "Peru": 2 });
     }
 
-    /* 2. FETCH STATUS KPI DATA */
+    /* 2. FETCH STATUS KPI DATA (populates both Summary and Key Results) */
     async function fetchStatusKPIData() {
       try {
         const response = await fetch(SHEET_STATUS_URL);
@@ -665,6 +695,10 @@
         const rejected = getVal('brand rejected');
         const pending = getVal('waiting approval');
 
+        // Update Summary Section
+        document.getElementById('summary-uploaded').textContent = uploaded;
+
+        // Update Key Results KPI Section
         document.getElementById('kpi-uploaded').textContent = `${uploaded}명`;
         document.getElementById('kpi-waiting-upload').textContent = `${waitingUpload}명`;
         document.getElementById('kpi-accepted').textContent = `${accepted}명`;
@@ -673,6 +707,7 @@
 
       } catch (e) {
         console.warn("Using fallback status KPI data", e);
+        document.getElementById('summary-uploaded').textContent = "9";
         document.getElementById('kpi-uploaded').textContent = "9명";
         document.getElementById('kpi-waiting-upload').textContent = "12명";
         document.getElementById('kpi-accepted').textContent = "9명";
@@ -681,7 +716,7 @@
       }
     }
 
-    /* 3. REVISED: MONOCHROME / MINT GRADIENT SOFT PASTEL PIE CHART COLOR PALETTE */
+    /* 3. REVISED: BLACK TO LIGHT-GRAY MONOCHROME GRADIENT PIE CHART */
     function renderNationalityChart(counts) {
       const labels = Object.keys(counts);
       const dataValues = Object.values(counts);
@@ -689,20 +724,18 @@
       const ctx = document.getElementById("nationalityPieChart").getContext("2d");
       if (nationalityChart) nationalityChart.destroy();
 
-      // Ultra-clean, cohesive soft mint/lime/olive gradient palette (non-clashing)
-      const softGradientPalette = [
-        "#059669", // Deep Emerald
-        "#10b981", // Fresh Mint
-        "#34d399", // Soft Mint
-        "#6ee7b7", // Light Mint
-        "#a7f3d0", // Pale Mint
-        "#84cc16", // Lime
-        "#a3e635", // Soft Lime
-        "#bef264", // Light Lime
-        "#d9f99d", // Pale Lime
-        "#fef08a", // Soft Cream Yellow
-        "#94a3b8", // Muted Slate
-        "#cbd5e1"  // Light Slate
+      // Sleek Black-to-Gray Monochrome Gradient Palette
+      const monochromePalette = [
+        "#111111", // Black
+        "#333333", // Dark Charcoal
+        "#555555", // Charcoal
+        "#777777", // Dark Gray
+        "#999999", // Medium Gray
+        "#bbbbbb", // Gray
+        "#dddddd", // Light Gray
+        "#e5e7eb", // Soft Pale Gray
+        "#f1f5f9", // Off White Gray
+        "#d1d5db"  // Slate Gray
       ];
 
       nationalityChart = new Chart(ctx, {
@@ -711,7 +744,7 @@
           labels: labels,
           datasets: [{
             data: dataValues,
-            backgroundColor: softGradientPalette.slice(0, labels.length),
+            backgroundColor: monochromePalette.slice(0, labels.length),
             borderWidth: 2,
             borderColor: "#ffffff"
           }]
