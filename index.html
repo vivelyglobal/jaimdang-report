@@ -25,7 +25,7 @@
       --radius-sm: 10px;
       --max-width: 1200px;
       
-      /* Elegant & Soft Brand Palette */
+      /* Vively Friendly Palette */
       --brand-accent: #84cc16;
       --brand-soft-bg: #f7fee7;
       --vively-purple-light: #f3e8ff;
@@ -36,6 +36,12 @@
       --vively-pink: #f472b6;
       --vively-yellow-light: #fef9c3;
       --vively-yellow: #fde047;
+
+      /* KPI Specific Colors */
+      --kpi-green: #16a34a;
+      --kpi-yellow: #ca8a04;
+      --kpi-purple: #a855f7;
+      --kpi-red: #ef4444;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -61,9 +67,9 @@
     }
     
     .brand-logo {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 800;
-      letter-spacing: -0.5px;
+      letter-spacing: -1px;
       color: #000;
       font-family: 'Noto Sans KR', sans-serif;
       line-height: 1;
@@ -248,6 +254,13 @@
     .kpi-value { font-size: 36px; line-height: 1.1; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 8px; font-variant-numeric: tabular-nums; color: #000; }
     .kpi-note { font-size: 13px; color: var(--muted); }
     
+    /* Specific Colored Text for KPI Values */
+    .kpi-value.green { color: var(--kpi-green); }
+    .kpi-value.yellow { color: var(--kpi-yellow); }
+    .kpi-value.purple { color: var(--kpi-purple); }
+    .kpi-value.red { color: var(--kpi-red); }
+    .kpi-value.black { color: #000000; }
+
     .tag {
       display: inline-block;
       font-size: 10px;
@@ -357,17 +370,17 @@
 <body>
 
   <div class="report">
-    <!-- TOP BAR -->
+    <!-- TOP BAR (REVISED: Vively Logo) -->
     <div class="top-bar">
-      <div class="brand-logo">자임당한의원</div>
+      <div class="brand-logo">Vively</div>
       <div class="live-status">
         <span class="live-dot"></span> LIVE DASHBOARD CONNECTED
       </div>
     </div>
 
-    <!-- HERO -->
+    <!-- HERO (REVISED: Eyebrow Subtitle) -->
     <section class="hero">
-      <div class="eyebrow">Marketing &amp; Viral Campaign Performance Report</div>
+      <div class="eyebrow">인플루언서 시딩 마켓팅 캠페인 리포트</div>
       <h1 class="title">자임당한의원</h1>
     </section>
 
@@ -432,7 +445,7 @@
       </div>
     </section>
 
-    <!-- 02 KEY RESULTS -->
+    <!-- 02 KEY RESULTS (REVISED: Colored Numbers) -->
     <section class="section">
       <h2><span class="num">02 — KEY RESULTS</span>핵심 성과 요약 (KPI)</h2>
       <div class="section-intro">
@@ -440,39 +453,45 @@
       </div>
       
       <div class="grid-6">
+        <!-- Total Creators (Black) -->
         <div class="card kpi hot">
           <div class="kpi-label">참여 크리에이터 <span class="tag">TOTAL</span></div>
-          <div class="kpi-value" id="kpi-total">0명</div>
+          <div class="kpi-value black" id="kpi-total">0명</div>
           <div class="kpi-note" id="kpi-total-note">전체 지원 크리에이터 수</div>
         </div>
 
+        <!-- Uploaded (Green) -->
         <div class="card kpi hot">
           <div class="kpi-label">콘텐츠 업로드 완료 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value" id="kpi-uploaded">0명</div>
+          <div class="kpi-value green" id="kpi-uploaded">0명</div>
           <div class="kpi-note">최종 콘텐츠 제작 완료</div>
         </div>
 
+        <!-- Waiting Upload (Yellow) -->
         <div class="card kpi hot">
           <div class="kpi-label">업로드 대기 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value" id="kpi-waiting-upload">0명</div>
+          <div class="kpi-value yellow" id="kpi-waiting-upload">0명</div>
           <div class="kpi-note">콘텐츠 업로드 진행 예정</div>
         </div>
 
+        <!-- Brand Accepted (Light Purple) -->
         <div class="card kpi hot">
           <div class="kpi-label">브랜드 승인 완료 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value" id="kpi-accepted">0명</div>
+          <div class="kpi-value purple" id="kpi-accepted">0명</div>
           <div class="kpi-note">브랜드 검수 및 승인 완료</div>
         </div>
 
+        <!-- Brand Rejected (Red) -->
         <div class="card kpi hot">
           <div class="kpi-label">브랜드 거절 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value" id="kpi-rejected">0명</div>
+          <div class="kpi-value red" id="kpi-rejected">0명</div>
           <div class="kpi-note">매칭 미보류 크리에이터</div>
         </div>
 
+        <!-- Waiting Approval (Black) -->
         <div class="card kpi hot">
           <div class="kpi-label">신청 대기 (승인 대기) <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value" id="kpi-pending">0명</div>
+          <div class="kpi-value black" id="kpi-pending">0명</div>
           <div class="kpi-note">신청 접수 후 승인 대기 중</div>
         </div>
       </div>
@@ -662,7 +681,7 @@
       }
     }
 
-    /* 3. REVISED: PREMIUM SOFT PASTEL PIE CHART COLOR PALETTE */
+    /* 3. REVISED: MONOCHROME / MINT GRADIENT SOFT PASTEL PIE CHART COLOR PALETTE */
     function renderNationalityChart(counts) {
       const labels = Object.keys(counts);
       const dataValues = Object.values(counts);
@@ -670,18 +689,20 @@
       const ctx = document.getElementById("nationalityPieChart").getContext("2d");
       if (nationalityChart) nationalityChart.destroy();
 
-      // Professional Soft Aesthetic Palette suitable for brand reporting
-      const softPastelColors = [
-        "#94a3b8", // Soft Slate
-        "#a3e635", // Soft Olive/Lime
-        "#f472b6", // Soft Rose
-        "#fbbf24", // Soft Amber
-        "#c084fc", // Soft Lavender
-        "#38bdf8", // Soft Sky Blue
-        "#f97316", // Soft Peach
-        "#2dd4bf", // Soft Sage/Teal
-        "#e879f9", // Soft Mauve
-        "#fca5a5"  // Soft Coral
+      // Ultra-clean, cohesive soft mint/lime/olive gradient palette (non-clashing)
+      const softGradientPalette = [
+        "#059669", // Deep Emerald
+        "#10b981", // Fresh Mint
+        "#34d399", // Soft Mint
+        "#6ee7b7", // Light Mint
+        "#a7f3d0", // Pale Mint
+        "#84cc16", // Lime
+        "#a3e635", // Soft Lime
+        "#bef264", // Light Lime
+        "#d9f99d", // Pale Lime
+        "#fef08a", // Soft Cream Yellow
+        "#94a3b8", // Muted Slate
+        "#cbd5e1"  // Light Slate
       ];
 
       nationalityChart = new Chart(ctx, {
@@ -690,7 +711,7 @@
           labels: labels,
           datasets: [{
             data: dataValues,
-            backgroundColor: softPastelColors.slice(0, labels.length),
+            backgroundColor: softGradientPalette.slice(0, labels.length),
             borderWidth: 2,
             borderColor: "#ffffff"
           }]
