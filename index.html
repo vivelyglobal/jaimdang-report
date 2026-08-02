@@ -25,15 +25,17 @@
       --radius-sm: 10px;
       --max-width: 1200px;
       
-      /* Vively Friendly Palette */
-      --vively-lime: #84cc16;
-      --vively-lime-light: #ecfccb;
-      --vively-pink: #f472b6;
-      --vively-pink-light: #fce7f3;
-      --vively-yellow: #fde047;
-      --vively-yellow-light: #fef9c3;
-      --vively-purple: #c084fc;
+      /* Elegant & Soft Brand Palette */
+      --brand-accent: #84cc16;
+      --brand-soft-bg: #f7fee7;
       --vively-purple-light: #f3e8ff;
+      --vively-purple: #c084fc;
+      --vively-lime-light: #ecfccb;
+      --vively-lime: #84cc16;
+      --vively-pink-light: #fce7f3;
+      --vively-pink: #f472b6;
+      --vively-yellow-light: #fef9c3;
+      --vively-yellow: #fde047;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -115,7 +117,7 @@
     .section h2 .num { font-size: 12px; color: #000; font-weight: 800; letter-spacing: 0.14em; display: block; margin-bottom: 6px; }
     .section-intro { color: var(--muted); max-width: 860px; margin: 0 0 24px; font-size: 15px; }
 
-    /* Marketing Calendar Timeline Section */
+    /* Marketing Calendar Timeline */
     .calendar-container {
       margin-top: 20px;
       background: #ffffff;
@@ -124,8 +126,8 @@
     .timeline-wrapper {
       position: relative;
       width: 100%;
-      border-left: 3px solid var(--vively-lime);
-      border-bottom: 3px solid var(--vively-lime);
+      border-left: 3px solid var(--brand-accent);
+      border-bottom: 3px solid var(--brand-accent);
       padding-bottom: 10px;
       overflow: visible;
     }
@@ -203,13 +205,13 @@
       font-size: 13.5px;
       color: #333;
       line-height: 1.8;
-      background: #f7fee7;
+      background: var(--brand-soft-bg);
       padding: 18px 22px;
       border-radius: var(--radius-sm);
-      border-left: 4px solid var(--vively-lime);
+      border-left: 4px solid var(--brand-accent);
     }
 
-    /* Grid Layout for 6 KPI Cards */
+    /* Grid Layout for KPI Cards */
     .grid-6 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -540,7 +542,7 @@
       return result;
     }
 
-    /* NORMALIZER FOR NATIONALITY NAMES */
+    /* NORMALIZER FOR CLEAN NATIONALITY DISPLAY */
     function normalizeNationality(rawNat) {
       if (!rawNat) return null;
       let clean = rawNat.trim().toLowerCase();
@@ -613,7 +615,7 @@
       renderNationalityChart({ "Indonesia": 12, "Egypt": 5, "Philippines": 4, "Spain": 3, "Peru": 2 });
     }
 
-    /* 2. FIXED: DIRECT KEY-VALUE PARSER FOR STATUS KPI DATA */
+    /* 2. FETCH STATUS KPI DATA */
     async function fetchStatusKPIData() {
       try {
         const response = await fetch(SHEET_STATUS_URL);
@@ -622,7 +624,6 @@
         
         const statusMap = {};
 
-        // Parse key-value table (Col A: Label, Col B: Value)
         for (let i = 0; i < lines.length; i++) {
           const cols = parseCSVLine(lines[i]);
           if (cols.length >= 2) {
@@ -632,7 +633,6 @@
           }
         }
 
-        // Helper to match key safely
         const getVal = (searchKey) => {
           for (let k in statusMap) {
             if (k.includes(searchKey.toLowerCase())) return statusMap[k];
@@ -662,7 +662,7 @@
       }
     }
 
-    /* RENDER PIE CHART FOR NATIONALITY */
+    /* 3. REVISED: PREMIUM SOFT PASTEL PIE CHART COLOR PALETTE */
     function renderNationalityChart(counts) {
       const labels = Object.keys(counts);
       const dataValues = Object.values(counts);
@@ -670,13 +670,27 @@
       const ctx = document.getElementById("nationalityPieChart").getContext("2d");
       if (nationalityChart) nationalityChart.destroy();
 
+      // Professional Soft Aesthetic Palette suitable for brand reporting
+      const softPastelColors = [
+        "#94a3b8", // Soft Slate
+        "#a3e635", // Soft Olive/Lime
+        "#f472b6", // Soft Rose
+        "#fbbf24", // Soft Amber
+        "#c084fc", // Soft Lavender
+        "#38bdf8", // Soft Sky Blue
+        "#f97316", // Soft Peach
+        "#2dd4bf", // Soft Sage/Teal
+        "#e879f9", // Soft Mauve
+        "#fca5a5"  // Soft Coral
+      ];
+
       nationalityChart = new Chart(ctx, {
         type: "pie",
         data: {
           labels: labels,
           datasets: [{
             data: dataValues,
-            backgroundColor: ["#84cc16", "#f472b6", "#fde047", "#c084fc", "#38bdf8", "#fb923c", "#10b981", "#a855f7", "#ec4899", "#06b6d4"],
+            backgroundColor: softPastelColors.slice(0, labels.length),
             borderWidth: 2,
             borderColor: "#ffffff"
           }]
@@ -690,7 +704,9 @@
               labels: {
                 font: { family: "Pretendard", size: 12, weight: "600" },
                 padding: 14,
-                boxWidth: 12
+                boxWidth: 12,
+                usePointStyle: true,
+                pointStyle: "circle"
               }
             }
           }
