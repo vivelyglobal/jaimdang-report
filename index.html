@@ -25,7 +25,7 @@
       --radius-sm: 10px;
       --max-width: 1200px;
       
-      /* Vively Friendly Color Palette */
+      /* Vively Palette */
       --vively-lime: #84cc16;
       --vively-lime-light: #ecfccb;
       --vively-pink: #f472b6;
@@ -115,7 +115,7 @@
     .section h2 .num { font-size: 12px; color: #000; font-weight: 800; letter-spacing: 0.14em; display: block; margin-bottom: 6px; }
     .section-intro { color: var(--muted); max-width: 860px; margin: 0 0 24px; font-size: 15px; }
 
-    /* Marketing Calendar Timeline Section (Vively Lively Palette) */
+    /* Marketing Calendar Timeline Section */
     .calendar-container {
       margin-top: 20px;
       background: #ffffff;
@@ -273,7 +273,7 @@
     .chart-box {
       position: relative;
       width: 100%;
-      height: 360px;
+      height: 380px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -369,7 +369,7 @@
       <h1 class="title">자임당한의원</h1>
     </section>
 
-    <!-- 01 MARKETING CALENDAR (Vively Theme & Animated Swipe/Popup) -->
+    <!-- 01 MARKETING CALENDAR -->
     <section class="section">
       <h1 style="font-size: 32px; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.02em;">Marketing Calendar</h1>
       <h3 style="font-size: 20px; font-weight: 700; color: #222; margin: 0 0 20px;">캠페인별 타임라인</h3>
@@ -377,14 +377,12 @@
       <div class="calendar-container">
         <div class="timeline-wrapper">
           <div class="timeline-bars">
-            <!-- Row 1: 9월 크리에이터 모집 시작 (8월 ~ 12월 = 5 Bulan / 7 = 71.43%) -->
             <div class="timeline-bar-row">
               <div class="bar-item" style="margin-left: 28.57%; width: 71.43%; background-color: var(--vively-purple-light); border: 1px solid var(--vively-purple); animation-delay: 0.1s;">
                 9월 크리에이터 모집 시작
               </div>
             </div>
 
-            <!-- Row 2: 매주 시딩 50명 (9월 ~ 12월 = 4 Bulan / 7 = 57.14%) -->
             <div class="timeline-bar-row">
               <div class="bar-item" style="margin-left: 42.86%; width: 57.14%; background-color: var(--vively-lime-light); border: 1px solid var(--vively-lime); color:#111; animation-delay: 0.3s;">
                 매주 시딩 50명
@@ -392,7 +390,6 @@
               </div>
             </div>
 
-            <!-- Row 3: 시딩 60명 (8월 = 14.28%) -->
             <div class="timeline-bar-row">
               <div class="bar-item" style="margin-left: 28.57%; width: 14.28%; background-color: var(--vively-pink-light); border: 1px solid var(--vively-pink); animation-delay: 0.2s;">
                 시딩 60명
@@ -400,7 +397,6 @@
               </div>
             </div>
 
-            <!-- Row 4: 시딩 30명 (기타 국가) (6월 ~ 7월 = 28.57%) -->
             <div class="timeline-bar-row">
               <div class="bar-item" style="margin-left: 0%; width: 28.57%; background-color: var(--vively-yellow-light); border: 1px solid var(--vively-yellow); animation-delay: 0.0s;">
                 시딩 30명 (기타 국가)
@@ -409,7 +405,6 @@
           </div>
         </div>
 
-        <!-- Months Axis (6월 ~ 12월) -->
         <div class="timeline-months">
           <div class="month-item">6월</div>
           <div class="month-item">7월</div>
@@ -420,7 +415,6 @@
           <div class="month-item">12월</div>
         </div>
 
-        <!-- Highlight Descriptions -->
         <div class="timeline-details">
           <div class="detail-col">
             • 글로벌 타깃 유저 대상 마케팅<br />
@@ -436,7 +430,7 @@
       </div>
     </section>
 
-    <!-- 02 KEY RESULTS (Real-time Live Status Grid) -->
+    <!-- 02 KEY RESULTS -->
     <section class="section">
       <h2><span class="num">02 — KEY RESULTS</span>핵심 성과 요약 (KPI)</h2>
       <div class="section-intro">
@@ -444,42 +438,36 @@
       </div>
       
       <div class="grid-6">
-        <!-- 1. Total Creators -->
         <div class="card kpi hot">
           <div class="kpi-label">참여 크리에이터 <span class="tag">TOTAL</span></div>
           <div class="kpi-value" id="kpi-total">0명</div>
           <div class="kpi-note" id="kpi-total-note">전체 지원 크리에이터 수</div>
         </div>
 
-        <!-- 2. Content Uploaded -->
         <div class="card kpi hot">
           <div class="kpi-label">콘텐츠 업로드 완료 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
           <div class="kpi-value" id="kpi-uploaded">0명</div>
           <div class="kpi-note">최종 콘텐츠 제작 완료</div>
         </div>
 
-        <!-- 3. Waiting Upload -->
         <div class="card kpi hot">
           <div class="kpi-label">업로드 대기 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
           <div class="kpi-value" id="kpi-waiting-upload">0명</div>
           <div class="kpi-note">콘텐츠 업로드 진행 예정</div>
         </div>
 
-        <!-- 4. Brand Accepted -->
         <div class="card kpi hot">
           <div class="kpi-label">브랜드 승인 완료 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
           <div class="kpi-value" id="kpi-accepted">0명</div>
           <div class="kpi-note">브랜드 검수 및 승인 완료</div>
         </div>
 
-        <!-- 5. Brand Rejected -->
         <div class="card kpi hot">
           <div class="kpi-label">브랜드 거절 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
           <div class="kpi-value" id="kpi-rejected">0명</div>
           <div class="kpi-note">매칭 미보류 크리에이터</div>
         </div>
 
-        <!-- 6. Waiting Approval -->
         <div class="card kpi hot">
           <div class="kpi-label">신청 대기 (승인 대기) <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
           <div class="kpi-value" id="kpi-pending">0명</div>
@@ -499,7 +487,6 @@
         구글 스프레드시트에 등록된 크리에이터의 국가 분포 및 콘텐츠 슬라이드 애니메이션입니다.
       </div>
 
-      <!-- NATIONALITY PIE CHART CARD ONLY -->
       <div class="card" style="width: 100%;">
         <div class="case-title" style="font-size: 18px; font-weight:800; margin-bottom: 14px;">크리에이터 국가 분포</div>
         <div class="chart-box">
@@ -507,7 +494,6 @@
         </div>
       </div>
 
-      <!-- VERTICAL REELS SLIDER (9:16) -->
       <div style="margin-top: 35px;">
         <div class="case-title" style="font-size: 18px; font-weight:800; display:flex; justify-content:space-between; align-items:center;">
           <span>캠페인 비주얼</span>
@@ -529,16 +515,57 @@
   </div>
 
   <script>
-    /* LINKS FROM REVISION INSTRUCTIONS */
-    // Sheet 1: Nationality & Total Creators Count
     const SHEET_CREATORS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8nhFOXxDRKMFciNR2zhSvpy3hsPnQmweqn5HXutUNxhqTSzrnlNZBJnRqr94_hdmrXPMWuMcWti-9/pub?gid=1282444044&single=true&output=csv";
-    
-    // Sheet 2: Application Status Counts
     const SHEET_STATUS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8nhFOXxDRKMFciNR2zhSvpy3hsPnQmweqn5HXutUNxhqTSzrnlNZBJnRqr94_hdmrXPMWuMcWti-9/pub?gid=1736652936&single=true&output=csv";
 
     let nationalityChart = null;
 
-    /* 1. FETCH CREATORS & NATIONALITY DATA */
+    /* PROPER CSV PARSER THAT HANDLES QUOTED TEXT & COMMA IN STRINGS */
+    function parseCSVLine(text) {
+      const result = [];
+      let cell = '';
+      let inQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (c === '"') {
+          inQuotes = !inQuotes;
+        } else if (c === ',' && !inQuotes) {
+          result.push(cell.trim().replace(/^"|"$/g, ''));
+          cell = '';
+        } else {
+          cell += c;
+        }
+      }
+      result.push(cell.trim().replace(/^"|"$/g, ''));
+      return result;
+    }
+
+    /* NORMALIZER FOR NATIONALITY NAMES (Combines duplicates like "indonesia", "Indonesian" -> "Indonesia") */
+    function normalizeNationality(rawNat) {
+      if (!rawNat) return null;
+      let clean = rawNat.trim().toLowerCase();
+      if (!clean || clean === '-' || clean === 'n/a') return null;
+
+      if (clean.includes('indonesia')) return 'Indonesia';
+      if (clean.includes('russia') || clean.includes('russian')) return 'Russia';
+      if (clean.includes('japan') || clean.includes('japanese')) return 'Japan';
+      if (clean.includes('filip') || clean.includes('philippin')) return 'Philippines';
+      if (clean.includes('korea')) return 'South Korea';
+      if (clean.includes('egypt')) return 'Egypt';
+      if (clean.includes('spain') || clean.includes('spanish')) return 'Spain';
+      if (clean.includes('peru')) return 'Peru';
+      if (clean.includes('nepal')) return 'Nepal';
+      if (clean.includes('uzbek')) return 'Uzbekistan';
+      if (clean.includes('romani')) return 'Romania';
+      if (clean.includes('chile')) return 'Chile';
+      if (clean.includes('singapore')) return 'Singapore';
+      if (clean.includes('syria')) return 'Syria';
+
+      // Capitalize first letter
+      return rawNat.trim().charAt(0).toUpperCase() + rawNat.trim().slice(1);
+    }
+
+    /* 1. FETCH CREATORS & NATIONALITY DATA ONLY FROM NATIONALITY COLUMN */
     async function fetchCreatorsData() {
       try {
         const response = await fetch(SHEET_CREATORS_URL);
@@ -546,23 +573,36 @@
         const lines = text.trim().split('\n');
         
         if (lines.length > 1) {
-          const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, '').toLowerCase());
+          const headers = parseCSVLine(lines[0]).map(h => h.toLowerCase());
           
-          let natIndex = headers.findIndex(h => h.includes('nationality') || h.includes('국가'));
-          if (natIndex === -1) natIndex = 1; // Fallback
+          // STRICTLY LOOK FOR NATIONALITY COLUMN
+          let natIndex = headers.findIndex(h => h.includes('nationality') || h === '국가');
+          if (natIndex === -1) {
+            // Find column with "nat" if exact match fails
+            natIndex = headers.findIndex(h => h.includes('nat'));
+          }
+
+          let noIndex = headers.findIndex(h => h === 'no' || h === 'no.' || h.includes('번호'));
+          if (noIndex === -1) noIndex = 0;
 
           const counts = {};
           let totalCreators = 0;
 
           for (let i = 1; i < lines.length; i++) {
-            const cols = lines[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
-            if (cols[0] && cols[0] !== '') {
+            const cols = parseCSVLine(lines[i]);
+            
+            // Count total rows with valid 'no'
+            if (cols[noIndex] && cols[noIndex] !== '') {
               totalCreators++;
             }
 
-            const nat = cols[natIndex];
-            if (nat && nat !== '') {
-              counts[nat] = (counts[nat] || 0) + 1;
+            // Extract ONLY from Nationality column
+            if (natIndex !== -1 && cols[natIndex]) {
+              const rawVal = cols[natIndex];
+              const normalized = normalizeNationality(rawVal);
+              if (normalized) {
+                counts[normalized] = (counts[normalized] || 0) + 1;
+              }
             }
           }
 
@@ -580,7 +620,7 @@
       renderNationalityChart({ "Indonesia": 12, "Egypt": 5, "Philippines": 4, "Spain": 3, "Peru": 2 });
     }
 
-    /* 2. FETCH STATUS KPI DATA (Status 1-5) */
+    /* 2. FETCH STATUS KPI DATA */
     async function fetchStatusKPIData() {
       try {
         const response = await fetch(SHEET_STATUS_URL);
@@ -594,8 +634,7 @@
         let pending = 0;
 
         for (let i = 1; i < lines.length; i++) {
-          const cols = lines[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
-          // Parsing status columns or rows
+          const cols = parseCSVLine(lines[i]);
           const statusText = (cols[1] || '').toLowerCase();
           
           if (statusText.includes('uploaded') || statusText.includes('완료')) uploaded++;
@@ -621,7 +660,7 @@
       }
     }
 
-    /* RENDER PIE CHART FOR NATIONALITY */
+    /* RENDER CLEAN NATIONALITY PIE CHART */
     function renderNationalityChart(counts) {
       const labels = Object.keys(counts);
       const dataValues = Object.values(counts);
@@ -635,7 +674,7 @@
           labels: labels,
           datasets: [{
             data: dataValues,
-            backgroundColor: ["#84cc16", "#f472b6", "#fde047", "#c084fc", "#38bdf8", "#fb923c", "#10b981"],
+            backgroundColor: ["#84cc16", "#f472b6", "#fde047", "#c084fc", "#38bdf8", "#fb923c", "#10b981", "#a855f7", "#ec4899", "#06b6d4"],
             borderWidth: 2,
             borderColor: "#ffffff"
           }]
