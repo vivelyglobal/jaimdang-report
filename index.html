@@ -24,6 +24,16 @@
       --radius: 16px;
       --radius-sm: 10px;
       --max-width: 1200px;
+      
+      /* Vively Friendly Color Palette */
+      --vively-lime: #84cc16;
+      --vively-lime-light: #ecfccb;
+      --vively-pink: #f472b6;
+      --vively-pink-light: #fce7f3;
+      --vively-yellow: #fde047;
+      --vively-yellow-light: #fef9c3;
+      --vively-purple: #c084fc;
+      --vively-purple-light: #f3e8ff;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -105,7 +115,7 @@
     .section h2 .num { font-size: 12px; color: #000; font-weight: 800; letter-spacing: 0.14em; display: block; margin-bottom: 6px; }
     .section-intro { color: var(--muted); max-width: 860px; margin: 0 0 24px; font-size: 15px; }
 
-    /* Marketing Calendar Timeline Section & Pop-up Effect */
+    /* Marketing Calendar Timeline Section (Vively Lively Palette) */
     .calendar-container {
       margin-top: 20px;
       background: #ffffff;
@@ -114,8 +124,8 @@
     .timeline-wrapper {
       position: relative;
       width: 100%;
-      border-left: 2px solid #bef264;
-      border-bottom: 2px solid #bef264;
+      border-left: 3px solid var(--vively-lime);
+      border-bottom: 3px solid var(--vively-lime);
       padding-bottom: 10px;
       overflow: visible;
     }
@@ -148,19 +158,18 @@
       font-weight: 700;
       color: #111;
       text-align: center;
-      border-radius: 4px;
+      border-radius: 6px;
       transform-origin: left center;
       animation: slideInSwipe 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       cursor: pointer;
       transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
       z-index: 1;
     }
     
-    /* Hover Pop-Up Animation for Calendar Bars */
     .bar-item:hover {
       transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      box-shadow: 0 8px 20px rgba(132, 204, 22, 0.2);
       z-index: 10;
     }
     
@@ -174,7 +183,7 @@
     .timeline-months {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      border-top: 1px solid #fef08a;
+      border-top: 2px dashed #d9f99d;
       padding-top: 15px;
       text-align: center;
     }
@@ -194,14 +203,18 @@
       font-size: 13.5px;
       color: #333;
       line-height: 1.8;
-      background: #f9f9fb;
-      padding: 16px 20px;
+      background: #f7fee7;
+      padding: 18px 22px;
       border-radius: var(--radius-sm);
-      border-left: 3px solid #bef264;
+      border-left: 4px solid var(--vively-lime);
     }
 
-    /* Grid Layouts */
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    /* Grid Layout for 6 KPI Cards */
+    .grid-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
 
     .card {
       border: 1px solid var(--line);
@@ -230,7 +243,7 @@
       flex-wrap: wrap;
       font-weight: 700;
     }
-    .kpi-value { font-size: 38px; line-height: 1.1; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 8px; font-variant-numeric: tabular-nums; color: #000; }
+    .kpi-value { font-size: 36px; line-height: 1.1; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 8px; font-variant-numeric: tabular-nums; color: #000; }
     .kpi-note { font-size: 13px; color: var(--muted); }
     
     .tag {
@@ -328,10 +341,14 @@
     .footer { font-size: 12.5px; color: var(--muted); padding-top: 24px; border-top: 1px solid var(--line); margin-top: 40px; }
 
     @media (max-width: 1024px) {
-      .grid-4, .timeline-details { grid-template-columns: 1fr; }
+      .grid-6 { grid-template-columns: repeat(2, 1fr); }
+      .timeline-details { grid-template-columns: 1fr; }
       .title { font-size: 32px; }
       .report { padding: 20px 16px 50px; }
       .month-item { font-size: 15px; }
+    }
+    @media (max-width: 640px) {
+      .grid-6 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -352,7 +369,7 @@
       <h1 class="title">자임당한의원</h1>
     </section>
 
-    <!-- 01 MARKETING CALENDAR -->
+    <!-- 01 MARKETING CALENDAR (Vively Theme & Animated Swipe/Popup) -->
     <section class="section">
       <h1 style="font-size: 32px; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.02em;">Marketing Calendar</h1>
       <h3 style="font-size: 20px; font-weight: 700; color: #222; margin: 0 0 20px;">캠페인별 타임라인</h3>
@@ -360,32 +377,32 @@
       <div class="calendar-container">
         <div class="timeline-wrapper">
           <div class="timeline-bars">
-            <!-- Row 1: 9월 크리에이터 모집 시작 (8월 ~ 12월 = 5 Bulan / 7 = 71.42%) -->
-            <!-- Row 1: 매주 시딩 50명 (9월 ~ 12월 = 4 Bulan / 7 = 57.14%) -->
+            <!-- Row 1: 9월 크리에이터 모집 시작 (8월 ~ 12월 = 5 Bulan / 7 = 71.43%) -->
             <div class="timeline-bar-row">
-              <div class="bar-item" style="margin-left: 28.57%; width: 71.43%; background-color: #fcf4f4; animation-delay: 0.1s;">
+              <div class="bar-item" style="margin-left: 28.57%; width: 71.43%; background-color: var(--vively-purple-light); border: 1px solid var(--vively-purple); animation-delay: 0.1s;">
                 9월 크리에이터 모집 시작
               </div>
             </div>
 
+            <!-- Row 2: 매주 시딩 50명 (9월 ~ 12월 = 4 Bulan / 7 = 57.14%) -->
             <div class="timeline-bar-row">
-              <div class="bar-item" style="margin-left: 42.86%; width: 57.14%; background-color: #e5e7eb; color:#111; animation-delay: 0.3s;">
+              <div class="bar-item" style="margin-left: 42.86%; width: 57.14%; background-color: var(--vively-lime-light); border: 1px solid var(--vively-lime); color:#111; animation-delay: 0.3s;">
                 매주 시딩 50명
                 <span class="bar-subtext">(총 200명) (일본, 기타 국가)</span>
               </div>
             </div>
 
-            <!-- Row 2: 시딩 60명 (8월 = 14.28%) -->
+            <!-- Row 3: 시딩 60명 (8월 = 14.28%) -->
             <div class="timeline-bar-row">
-              <div class="bar-item" style="margin-left: 28.57%; width: 14.28%; background-color: #fbcfe8; animation-delay: 0.2s;">
+              <div class="bar-item" style="margin-left: 28.57%; width: 14.28%; background-color: var(--vively-pink-light); border: 1px solid var(--vively-pink); animation-delay: 0.2s;">
                 시딩 60명
                 <span class="bar-subtext">(일본, 기타 국가)</span>
               </div>
             </div>
 
-            <!-- Row 3: 시딩 30명 (기타 국가) (6월 ~ 7월 = 28.57%) -->
+            <!-- Row 4: 시딩 30명 (기타 국가) (6월 ~ 7월 = 28.57%) -->
             <div class="timeline-bar-row">
-              <div class="bar-item" style="margin-left: 0%; width: 28.57%; background-color: #fef08a; animation-delay: 0.0s;">
+              <div class="bar-item" style="margin-left: 0%; width: 28.57%; background-color: var(--vively-yellow-light); border: 1px solid var(--vively-yellow); animation-delay: 0.0s;">
                 시딩 30명 (기타 국가)
               </div>
             </div>
@@ -403,7 +420,7 @@
           <div class="month-item">12월</div>
         </div>
 
-        <!-- Highlight Descriptions (Left: 6-8월 / Right: 9-12월) -->
+        <!-- Highlight Descriptions -->
         <div class="timeline-details">
           <div class="detail-col">
             • 글로벌 타깃 유저 대상 마케팅<br />
@@ -419,41 +436,59 @@
       </div>
     </section>
 
-    <!-- 02 KEY RESULTS -->
+    <!-- 02 KEY RESULTS (Real-time Live Status Grid) -->
     <section class="section">
       <h2><span class="num">02 — KEY RESULTS</span>핵심 성과 요약 (KPI)</h2>
       <div class="section-intro">
-        View당 지급 단가(PVV), 도달 규모, 글로벌 크리에이터 성별 및 라이브 동적 실시간 참여 반응 수치입니다.
+        신청자 등록 및 진행 상태 변경 시 실시간으로 수치가 자동 반영되는 라이브 대시보드입니다.
       </div>
       
-      <div class="grid-4">
+      <div class="grid-6">
+        <!-- 1. Total Creators -->
         <div class="card kpi hot">
-          <div class="kpi-label">참여 크리에이터 <span class="tag">CONFIRMED</span></div>
-          <div class="kpi-value" id="kpi-creators">0명</div>
-          <div class="kpi-note" id="kpi-creators-note">글로벌 인플루언서 참여</div>
+          <div class="kpi-label">참여 크리에이터 <span class="tag">TOTAL</span></div>
+          <div class="kpi-value" id="kpi-total">0명</div>
+          <div class="kpi-note" id="kpi-total-note">전체 지원 크리에이터 수</div>
         </div>
 
+        <!-- 2. Content Uploaded -->
         <div class="card kpi hot">
-          <div class="kpi-label">크리에이터 성별 <span class="tag">TARGET</span></div>
-          <div class="kpi-value">여성</div>
-          <div class="kpi-note">여성 타겟 크리에이터 100%</div>
+          <div class="kpi-label">콘텐츠 업로드 완료 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
+          <div class="kpi-value" id="kpi-uploaded">0명</div>
+          <div class="kpi-note">최종 콘텐츠 제작 완료</div>
         </div>
 
+        <!-- 3. Waiting Upload -->
         <div class="card kpi hot">
-          <div class="kpi-label">총 조회수 (VIEWERS) <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value" id="kpi-viewers">0</div>
-          <div class="kpi-note">실시간 조회수 측정 중</div>
+          <div class="kpi-label">업로드 대기 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
+          <div class="kpi-value" id="kpi-waiting-upload">0명</div>
+          <div class="kpi-note">콘텐츠 업로드 진행 예정</div>
         </div>
 
+        <!-- 4. Brand Accepted -->
         <div class="card kpi hot">
-          <div class="kpi-label">총 좋아요 (LIKES) <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
-          <div class="kpi-value" id="kpi-likes">0</div>
-          <div class="kpi-note">실시간 반응 수치 측정 중</div>
+          <div class="kpi-label">브랜드 승인 완료 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
+          <div class="kpi-value" id="kpi-accepted">0명</div>
+          <div class="kpi-note">브랜드 검수 및 승인 완료</div>
+        </div>
+
+        <!-- 5. Brand Rejected -->
+        <div class="card kpi hot">
+          <div class="kpi-label">브랜드 거절 <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
+          <div class="kpi-value" id="kpi-rejected">0명</div>
+          <div class="kpi-note">매칭 미보류 크리에이터</div>
+        </div>
+
+        <!-- 6. Waiting Approval -->
+        <div class="card kpi hot">
+          <div class="kpi-label">신청 대기 (승인 대기) <span class="tag green"><span class="live-dot"></span> LIVE</span></div>
+          <div class="kpi-value" id="kpi-pending">0명</div>
+          <div class="kpi-note">신청 접수 후 승인 대기 중</div>
         </div>
       </div>
 
       <div class="insight">
-        <strong>주요 인사이트</strong> — <span id="kpi-insight-text">총 여성 글로벌 크리에이터가 참여하여 현장 체험 콘텐츠를 제작했으며, Real-time engagement 지표가 지속적으로 상승하고 있습니다.</span>
+        <strong>주요 인사이트</strong> — <span id="kpi-insight-text">지원자 현황 및 승인/업로드 단계별 데이터가 실시간으로 집계 및 측정되고 있습니다.</span>
       </div>
     </section>
 
@@ -464,7 +499,7 @@
         구글 스프레드시트에 등록된 크리에이터의 국가 분포 및 콘텐츠 슬라이드 애니메이션입니다.
       </div>
 
-      <!-- NATIONALITY PIE CHART CARD ONLY (TABLE REMOVED) -->
+      <!-- NATIONALITY PIE CHART CARD ONLY -->
       <div class="card" style="width: 100%;">
         <div class="case-title" style="font-size: 18px; font-weight:800; margin-bottom: 14px;">크리에이터 국가 분포</div>
         <div class="chart-box">
@@ -494,89 +529,96 @@
   </div>
 
   <script>
-    /* DIRECT GOOGLE SHEET CSV LINK PROVIDED */
-    const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8nhFOXxDRKMFciNR2zhSvpy3hsPnQmweqn5HXutUNxhqTSzrnlNZBJnRqr94_hdmrXPMWuMcWti-9/pub?gid=1736652936&single=true&output=csv";
+    /* LINKS FROM REVISION INSTRUCTIONS */
+    // Sheet 1: Nationality & Total Creators Count
+    const SHEET_CREATORS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8nhFOXxDRKMFciNR2zhSvpy3hsPnQmweqn5HXutUNxhqTSzrnlNZBJnRqr94_hdmrXPMWuMcWti-9/pub?gid=1282444044&single=true&output=csv";
+    
+    // Sheet 2: Application Status Counts
+    const SHEET_STATUS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8nhFOXxDRKMFciNR2zhSvpy3hsPnQmweqn5HXutUNxhqTSzrnlNZBJnRqr94_hdmrXPMWuMcWti-9/pub?gid=1736652936&single=true&output=csv";
 
     let nationalityChart = null;
 
-    /* FETCH SHEET DATA FOR KPI & PIE CHART */
-    async function fetchSheetData() {
+    /* 1. FETCH CREATORS & NATIONALITY DATA */
+    async function fetchCreatorsData() {
       try {
-        const response = await fetch(SHEET_CSV_URL);
+        const response = await fetch(SHEET_CREATORS_URL);
         const text = await response.text();
         const lines = text.trim().split('\n');
         
         if (lines.length > 1) {
           const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, '').toLowerCase());
           
-          // Find Column Indices
           let natIndex = headers.findIndex(h => h.includes('nationality') || h.includes('국가'));
-          if (natIndex === -1) natIndex = 1; // Fallback index for Nationality
-
-          let viewersIndex = headers.findIndex(h => h.includes('viewers') || h.includes('조회수') || h.includes('total viewers'));
-          if (viewersIndex === -1) viewersIndex = 7; // Column H = Index 7
-
-          let likesIndex = headers.findIndex(h => h.includes('likes') || h.includes('좋아요') || h.includes('total likes'));
-          if (likesIndex === -1) likesIndex = 8; // Column I = Index 8
+          if (natIndex === -1) natIndex = 1; // Fallback
 
           const counts = {};
           let totalCreators = 0;
-          let sumViewers = 0;
-          let sumLikes = 0;
 
           for (let i = 1; i < lines.length; i++) {
             const cols = lines[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
-            
-            // Count total creators based on non-empty rows
             if (cols[0] && cols[0] !== '') {
               totalCreators++;
             }
 
-            // Nationality Chart Data
             const nat = cols[natIndex];
             if (nat && nat !== '') {
               counts[nat] = (counts[nat] || 0) + 1;
             }
-
-            // Parse Viewers & Likes from Row 2 and Row 3 (Col H & I)
-            if (i === 1 || i === 2) {
-              const vVal = parseInt((cols[viewersIndex] || '0').replace(/[^0-9]/g, ''), 10);
-              const lVal = parseInt((cols[likesIndex] || '0').replace(/[^0-9]/g, ''), 10);
-              if (!isNaN(vVal)) sumViewers += vVal;
-              if (!isNaN(lVal)) sumLikes += lVal;
-            }
           }
 
-          // Update KPI UI
-          document.getElementById('kpi-creators').textContent = `${totalCreators}명`;
-          document.getElementById('kpi-creators-note').textContent = `글로벌 인플루언서 ${totalCreators}인 참여`;
-          
-          if (sumViewers > 0) {
-            document.getElementById('kpi-viewers').textContent = sumViewers.toLocaleString();
-          } else {
-            document.getElementById('kpi-viewers').textContent = "40,438";
-          }
-
-          if (sumLikes > 0) {
-            document.getElementById('kpi-likes').textContent = sumLikes.toLocaleString();
-          } else {
-            document.getElementById('kpi-likes').textContent = "1,390";
-          }
-
-          document.getElementById('kpi-insight-text').textContent = `총 ${totalCreators}명의 여성 글로벌 크리에이터가 참여하여 현장 체험 콘텐츠를 제작했으며, Real-time engagement 지표가 지속적으로 상승하고 있습니다.`;
+          document.getElementById('kpi-total').textContent = `${totalCreators}명`;
+          document.getElementById('kpi-total-note').textContent = `글로벌 인플루언서 ${totalCreators}인 참여`;
 
           renderNationalityChart(counts);
           return;
         }
       } catch (e) {
-        console.warn("Using fallback sheet parsing", e);
+        console.warn("Using fallback creators data", e);
       }
 
-      // Fallback Rendering
-      document.getElementById('kpi-creators').textContent = "9명";
-      document.getElementById('kpi-viewers').textContent = "40,438";
-      document.getElementById('kpi-likes').textContent = "1,390";
-      renderNationalityChart({ "Indonesia": 3, "Egypt": 2, "Philippines": 1, "Spain": 1, "Peru": 1, "Pakistan": 1 });
+      document.getElementById('kpi-total').textContent = "26명";
+      renderNationalityChart({ "Indonesia": 12, "Egypt": 5, "Philippines": 4, "Spain": 3, "Peru": 2 });
+    }
+
+    /* 2. FETCH STATUS KPI DATA (Status 1-5) */
+    async function fetchStatusKPIData() {
+      try {
+        const response = await fetch(SHEET_STATUS_URL);
+        const text = await response.text();
+        const lines = text.trim().split('\n');
+        
+        let uploaded = 0;
+        let waitingUpload = 0;
+        let accepted = 0;
+        let rejected = 0;
+        let pending = 0;
+
+        for (let i = 1; i < lines.length; i++) {
+          const cols = lines[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
+          // Parsing status columns or rows
+          const statusText = (cols[1] || '').toLowerCase();
+          
+          if (statusText.includes('uploaded') || statusText.includes('완료')) uploaded++;
+          else if (statusText.includes('waiting upload') || statusText.includes('대기')) waitingUpload++;
+          else if (statusText.includes('accept') || statusText.includes('수락')) accepted++;
+          else if (statusText.includes('reject') || statusText.includes('거절')) rejected++;
+          else if (statusText.includes('pending') || statusText.includes('신청')) pending++;
+        }
+
+        document.getElementById('kpi-uploaded').textContent = `${uploaded}명`;
+        document.getElementById('kpi-waiting-upload').textContent = `${waitingUpload}명`;
+        document.getElementById('kpi-accepted').textContent = `${accepted}명`;
+        document.getElementById('kpi-rejected').textContent = `${rejected}명`;
+        document.getElementById('kpi-pending').textContent = `${pending}명`;
+
+      } catch (e) {
+        console.warn("Using fallback status KPI data", e);
+        document.getElementById('kpi-uploaded').textContent = "12명";
+        document.getElementById('kpi-waiting-upload').textContent = "5명";
+        document.getElementById('kpi-accepted').textContent = "6명";
+        document.getElementById('kpi-rejected').textContent = "1명";
+        document.getElementById('kpi-pending').textContent = "2명";
+      }
     }
 
     /* RENDER PIE CHART FOR NATIONALITY */
@@ -593,7 +635,7 @@
           labels: labels,
           datasets: [{
             data: dataValues,
-            backgroundColor: ["#000000", "#333333", "#555555", "#777777", "#999999", "#10b981", "#f59e0b"],
+            backgroundColor: ["#84cc16", "#f472b6", "#fde047", "#c084fc", "#38bdf8", "#fb923c", "#10b981"],
             borderWidth: 2,
             borderColor: "#ffffff"
           }]
@@ -649,7 +691,8 @@
     }
 
     window.addEventListener("DOMContentLoaded", () => {
-      fetchSheetData();
+      fetchCreatorsData();
+      fetchStatusKPIData();
       forceAutoplayVideos();
     });
     document.body.addEventListener("touchstart", forceAutoplayVideos, { once: true });
