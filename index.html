@@ -25,7 +25,7 @@
       --radius-sm: 10px;
       --max-width: 1200px;
       
-      /* Vively Palette */
+      /* Vively Friendly Palette */
       --vively-lime: #84cc16;
       --vively-lime-light: #ecfccb;
       --vively-pink: #f472b6;
@@ -520,7 +520,7 @@
 
     let nationalityChart = null;
 
-    /* PROPER CSV PARSER THAT HANDLES QUOTED TEXT & COMMA IN STRINGS */
+    /* ROBUST CSV LINE PARSER */
     function parseCSVLine(text) {
       const result = [];
       let cell = '';
@@ -540,7 +540,7 @@
       return result;
     }
 
-    /* NORMALIZER FOR NATIONALITY NAMES (Combines duplicates like "indonesia", "Indonesian" -> "Indonesia") */
+    /* NORMALIZER FOR NATIONALITY NAMES */
     function normalizeNationality(rawNat) {
       if (!rawNat) return null;
       let clean = rawNat.trim().toLowerCase();
@@ -561,11 +561,10 @@
       if (clean.includes('singapore')) return 'Singapore';
       if (clean.includes('syria')) return 'Syria';
 
-      // Capitalize first letter
       return rawNat.trim().charAt(0).toUpperCase() + rawNat.trim().slice(1);
     }
 
-    /* 1. FETCH CREATORS & NATIONALITY DATA ONLY FROM NATIONALITY COLUMN */
+    /* 1. FETCH CREATORS & NATIONALITY DATA */
     async function fetchCreatorsData() {
       try {
         const response = await fetch(SHEET_CREATORS_URL);
@@ -575,12 +574,8 @@
         if (lines.length > 1) {
           const headers = parseCSVLine(lines[0]).map(h => h.toLowerCase());
           
-          // STRICTLY LOOK FOR NATIONALITY COLUMN
           let natIndex = headers.findIndex(h => h.includes('nationality') || h === '국가');
-          if (natIndex === -1) {
-            // Find column with "nat" if exact match fails
-            natIndex = headers.findIndex(h => h.includes('nat'));
-          }
+          if (natIndex === -1) natIndex = headers.findIndex(h => h.includes('nat'));
 
           let noIndex = headers.findIndex(h => h === 'no' || h === 'no.' || h.includes('번호'));
           if (noIndex === -1) noIndex = 0;
@@ -591,12 +586,10 @@
           for (let i = 1; i < lines.length; i++) {
             const cols = parseCSVLine(lines[i]);
             
-            // Count total rows with valid 'no'
             if (cols[noIndex] && cols[noIndex] !== '') {
               totalCreators++;
             }
 
-            // Extract ONLY from Nationality column
             if (natIndex !== -1 && cols[natIndex]) {
               const rawVal = cols[natIndex];
               const normalized = normalizeNationality(rawVal);
@@ -616,33 +609,42 @@
         console.warn("Using fallback creators data", e);
       }
 
-      document.getElementById('kpi-total').textContent = "26명";
+      document.getElementById('kpi-total').textContent = "44명";
       renderNationalityChart({ "Indonesia": 12, "Egypt": 5, "Philippines": 4, "Spain": 3, "Peru": 2 });
     }
 
-    /* 2. FETCH STATUS KPI DATA */
+    /* 2. FIXED: DIRECT KEY-VALUE PARSER FOR STATUS KPI DATA */
     async function fetchStatusKPIData() {
       try {
         const response = await fetch(SHEET_STATUS_URL);
         const text = await response.text();
         const lines = text.trim().split('\n');
         
-        let uploaded = 0;
-        let waitingUpload = 0;
-        let accepted = 0;
-        let rejected = 0;
-        let pending = 0;
+        const statusMap = {};
 
-        for (let i = 1; i < lines.length; i++) {
+        // Parse key-value table (Col A: Label, Col B: Value)
+        for (let i = 0; i < lines.length; i++) {
           const cols = parseCSVLine(lines[i]);
-          const statusText = (cols[1] || '').toLowerCase();
-          
-          if (statusText.includes('uploaded') || statusText.includes('완료')) uploaded++;
-          else if (statusText.includes('waiting upload') || statusText.includes('대기')) waitingUpload++;
-          else if (statusText.includes('accept') || statusText.includes('수락')) accepted++;
-          else if (statusText.includes('reject') || statusText.includes('거절')) rejected++;
-          else if (statusText.includes('pending') || statusText.includes('신청')) pending++;
+          if (cols.length >= 2) {
+            const key = (cols[0] || '').trim().toLowerCase();
+            const val = parseInt((cols[1] || '0').replace(/[^0-9]/g, ''), 10);
+            statusMap[key] = isNaN(val) ? 0 : val;
+          }
         }
+
+        // Helper to match key safely
+        const getVal = (searchKey) => {
+          for (let k in statusMap) {
+            if (k.includes(searchKey.toLowerCase())) return statusMap[k];
+          }
+          return 0;
+        };
+
+        const uploaded = getVal('uploaded');
+        const waitingUpload = getVal('waiting upload');
+        const accepted = getVal('brand accepted');
+        const rejected = getVal('brand rejected');
+        const pending = getVal('waiting approval');
 
         document.getElementById('kpi-uploaded').textContent = `${uploaded}명`;
         document.getElementById('kpi-waiting-upload').textContent = `${waitingUpload}명`;
@@ -652,15 +654,15 @@
 
       } catch (e) {
         console.warn("Using fallback status KPI data", e);
-        document.getElementById('kpi-uploaded').textContent = "12명";
-        document.getElementById('kpi-waiting-upload').textContent = "5명";
-        document.getElementById('kpi-accepted').textContent = "6명";
-        document.getElementById('kpi-rejected').textContent = "1명";
-        document.getElementById('kpi-pending').textContent = "2명";
+        document.getElementById('kpi-uploaded').textContent = "9명";
+        document.getElementById('kpi-waiting-upload').textContent = "12명";
+        document.getElementById('kpi-accepted').textContent = "9명";
+        document.getElementById('kpi-rejected').textContent = "13명";
+        document.getElementById('kpi-pending').textContent = "0명";
       }
     }
 
-    /* RENDER CLEAN NATIONALITY PIE CHART */
+    /* RENDER PIE CHART FOR NATIONALITY */
     function renderNationalityChart(counts) {
       const labels = Object.keys(counts);
       const dataValues = Object.values(counts);
